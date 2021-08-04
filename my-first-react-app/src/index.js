@@ -1,8 +1,15 @@
 import React, { Children } from 'react';
 import ReactDOM, {render} from 'react-dom'; // 从react-dom中导入一个ReactDOM，逗号后面的内容是把
 // react-dom这个对象进行解构
-import './static/less/index.less'
-import Dialog from './static/component/Dialog'
+import './static/less/index.less';
+import Dialog from './static/component/Dialog';
+/** 
+ * 1.我们一般都把程序中的公用样式放到index.js中导入，这样在其他组件中也可以使用了
+ *  （webpack会把所有的组件最后都编译到一起，index是主入口）
+ * 2.导入bootstrap，可以导入min，但是里面依赖了一些font-face，需要连同fonts一起导入，
+ *   但是bootstrap已成过去式，现在都用阿里的ant-design
+ *  */
+import './static/css/bootstrap.min.css';
 // import { createElement, render } from './static/3-SELF-JSX'
 // import './index.css';
 // import App from './App';
@@ -96,16 +103,30 @@ const styleObj = { fontSize: '40px', fontWeight: 'bold' }
  * =》在执行函数的时候，把函数中return的jsx转换为新对象（通过createElement），把这个对象返回
  * =》紧接着render按照以往的渲染方式，创建dom元素，插入到指定的容器中即可
  */
-render(<div>
-  {/*注释：jsx中调取组件，只需要把组件当做一个标签调取使用即可
-  (单闭合和双闭合即可) */}
-   <Dialog con="111" style={{color: 'red'}}/>
-   {/* 属性值不是字符串的话，需要使用大括号包起来，比如数字 */}
-   <Dialog con="222" lx={2}>
-     <span>1</span>
-     <span>2</span>
-   </Dialog>
-</div>,root)
+// render(<div>
+//   {/*注释：jsx中调取组件，只需要把组件当做一个标签调取使用即可
+//   (单闭合和双闭合即可) */}
+//    <Dialog con="111" style={{color: 'red'}}/>
+//    {/* 属性值不是字符串的话，需要使用大括号包起来，比如数字 */}
+//    <Dialog con="222" lx={2}>
+//      <span>1</span>
+//      <span>2</span>
+//    </Dialog>
+// </div>,root)
+ReactDOM.render(<main>
+  <Dialog content='111'/>
+  <Dialog type={1} content="222"/>
+  <Dialog type={2} content={
+    <div>
+      <input type="text" className="form-control" placeholder="请输入用户名"/>
+      <br />
+      <input type="password" className="form-control" placeholder="请输入密码"/>
+    </div>
+  }>
+    <button className="btn btn-success">login in</button>
+    <button className="btn btn-danger">login out</button>
+  </Dialog>
+</main>, root)
 
 // React.createElement(type, props, children)
 // console.log(React.createElement("span", {
