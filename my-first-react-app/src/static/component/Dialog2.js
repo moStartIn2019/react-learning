@@ -13,8 +13,8 @@ import ReactDOM from 'react-dom';
  * 
  */
 class Dialog extends Component {
-  constructor (props) {
-    super(props); // es6中的extends继承，一旦使用了constructor，第一行位置必须设置super执行，相当于React.Component.call(this)，也就是call继承，把父类私有的属性继承过来
+  constructor () {
+    super(); // es6中的extends继承，一旦使用了constructor，第一行位置必须设置super执行，相当于React.Component.call(this)，也就是call继承，把父类私有的属性继承过来
               // super(props,context,updater) // 默认值是undefined 
     // 如果只写super()，虽然创建实例的时候把属性传递进来了，但是并没有传递父组件，也就是没有把属性挂载到实例上，使用this.props获取的结果是undefined
     
@@ -35,7 +35,9 @@ class Dialog extends Component {
     console.log(this); // new Dialog()
     console.log(this.props); // super必须传入props，否则this.props为undefined
   }
-
+  componentWillMount() {
+    console.log(this.props); // 即使constructor中的super()没有传入props，在生命周期函数中，react依旧帮我们将组件的props挂载到创建的实例中
+  }
   render() {
     return <section>
       <h3>系统提示</h3>
