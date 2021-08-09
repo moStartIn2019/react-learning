@@ -26,6 +26,7 @@ import React from 'react' // 每一个组件中，写的是jsx结构的组件的
 // }
 
 export default function Dialog(props) {
+  console.log(this); // undefined
   const {type, content, children} = props;
   // 样式
   const objStyle = {

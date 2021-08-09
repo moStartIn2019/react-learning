@@ -3,6 +3,7 @@ import ReactDOM, {render} from 'react-dom'; // 从react-dom中导入一个ReactD
 // react-dom这个对象进行解构
 import './static/less/index.less';
 import Dialog from './static/component/Dialog';
+import Dialog2 from './static/component/Dialog2'
 /** 
  * 1.我们一般都把程序中的公用样式放到index.js中导入，这样在其他组件中也可以使用了
  *  （webpack会把所有的组件最后都编译到一起，index是主入口）
@@ -86,7 +87,7 @@ const styleObj = { fontSize: '40px', fontWeight: 'bold' }
 /**
  * 知识点：
  *  createElement在处理的时候，遇到一个组件，返回的对象中：
- *  type就不在是字符串标签名了，而是一个函数（类），但是属性还是存在props中
+ *  type就不再是字符串标签名了，而是一个函数（类），但是属性还是存在props中
  * {
  *  type: Dialog,
  *  props: {
@@ -115,6 +116,7 @@ const styleObj = { fontSize: '40px', fontWeight: 'bold' }
 // </div>,root)
 ReactDOM.render(<main>
   <Dialog content='111'/>
+  {/* <Dialog content='111'/>
   <Dialog type={1} content="222"/>
   <Dialog type={2} content={
     <div>
@@ -125,7 +127,8 @@ ReactDOM.render(<main>
   }>
     <button className="btn btn-success">login in</button>
     <button className="btn btn-danger">login out</button>
-  </Dialog>
+  </Dialog> */}
+  <Dialog2 con='哈哈'></Dialog2>
 </main>, root)
 
 // React.createElement(type, props, children)
